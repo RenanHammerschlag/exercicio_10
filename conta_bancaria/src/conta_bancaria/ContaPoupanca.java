@@ -1,0 +1,34 @@
+package conta_bancaria;
+
+public class ContaPoupanca extends ContaBancaria{
+	private int dia_de_rendimento;
+	public ContaPoupanca(String cliente, int num_conta, float saldo, int dia_de_rendimento) {
+		super(cliente, num_conta, saldo);
+		this.dia_de_rendimento = dia_de_rendimento;
+	}
+	
+	public int getDiaDeRendimento() {
+		return dia_de_rendimento;
+	}
+	
+	public void setDiaDeRendimento(int dia_de_rendimento) {
+		this.dia_de_rendimento = dia_de_rendimento;
+	}
+	
+	
+	
+	public void calcularNovoSaldo(float taxa_rendimento) {
+		float novoSaldo = getSaldo() + (getSaldo() * taxa_rendimento / 100);
+		setSaldo(novoSaldo);
+	}
+	
+	 @Override
+	    public void sacar(float valor) {
+	        if (getSaldo() >= valor) {
+	            setSaldo(getSaldo() - valor);
+	            System.out.println("Saque de " + valor + " realizado com sucesso.");
+	        } else {
+	            System.out.println("Saldo insuficiente!");
+	        }
+	    }
+}
